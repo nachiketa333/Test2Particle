@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     var gameScore:Int = 0
 
     
+    @IBOutlet weak var messageLabel: UILabel!
     // MARK: Outlets
     
     @IBOutlet weak var scoreLabel: UILabel!
@@ -100,7 +101,7 @@ class ViewController: UIViewController {
                     self.gameScore = self.gameScore + 1;
                 }
                 else if (choice == "B") {
-                    self.turnParticleRed()
+                    self.smileSlow()
                 }
             }
         })
@@ -143,25 +144,7 @@ class ViewController: UIViewController {
         //var bytesToReceive : Int64 = task.countOfBytesExpectedToReceive
         
     }
-    
-    func turnParticleRed() {
-        
-        print("Pressed the change lights button")
-        
-        let parameters = ["red"]
-        var task = myPhoton!.callFunction("answer", withArguments: parameters) {
-            (resultCode : NSNumber?, error : Error?) -> Void in
-            if (error == nil) {
-                print("Sent message to Particle to turn red")
-            }
-            else {
-                print("Error when telling Particle to turn red")
-            }
-        }
-        //var bytesToReceive : Int64 = task.countOfBytesExpectedToReceive
-        
-    }
-    
+   
     
     var countdownTimer: Timer!
     var totalTime = 20
@@ -198,6 +181,7 @@ class ViewController: UIViewController {
         totalTime = 30;
          startTimer();
         smileSlow();
+        messageLabel.text = ("MOHAMMAD'S IS Fighting VIRUS!!")
         
     }
     
@@ -206,6 +190,7 @@ class ViewController: UIViewController {
         totalTime = 25;
         startTimer();
         self.smileAnimation();
+        messageLabel.text = ("VIRUS is Spreading FAST!!")
         
         }
         
