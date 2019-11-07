@@ -116,10 +116,10 @@ class ViewController: UIViewController {
         var task = myPhoton!.callFunction("answer", withArguments: parameters) {
             (resultCode : NSNumber?, error : Error?) -> Void in
             if (error == nil) {
-                print("Sent message to Particle to turn green")
+                print("Sent message to Particle for Smile Animation")
             }
             else {
-                print("Error when telling Particle to turn green")
+                print("Error when telling Particle to Smile")
             }
         }
         //var bytesToReceive : Int64 = task.countOfBytesExpectedToReceive
@@ -145,25 +145,60 @@ class ViewController: UIViewController {
     }
     
     
+    var countdownTimer: Timer!
+    var totalTime = 25
+    
+    
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    
+    @objc func updateTime() {
+        scoreLabel.text = ("\(timeFormatted(totalTime))")
+        
+        if totalTime != 0 {
+            totalTime -= 1
+        } else {
+            endTimer()
+        }
+    }
+    
+    func endTimer() {
+        countdownTimer.invalidate()
+    }
+    
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        //     let hours: Int = totalSeconds / 3600
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    
     @IBAction func testScoreButtonPressed(_ sender: Any) {
         
-        print("score button pressed")
+        startTimer();
+        self.smileAnimation();
         
-        // 1. Show the score in the Phone
-        // ------------------------------
-        self.scoreLabel.text = "Score:\(self.gameScore)"
-        
-        // 2. Send score to Particle
-        // ------------------------------
-        let parameters = [String(self.gameScore)]
-        var task = myPhoton!.callFunction("score", withArguments: parameters) {
-            (resultCode : NSNumber?, error : Error?) -> Void in
-            if (error == nil) {
-                print("Sent message to Particle to show score: \(self.gameScore)")
-            }
-            else {
-                print("Error when telling Particle to show score")
-            }
+//
+//        print("score button pressed")
+//
+//        // 1. Show the score in the Phone
+//        // ------------------------------
+//        self.scoreLabel.text = "Score:\(self.gameScore)"
+//
+//        // 2. Send score to Particle
+//        // ------------------------------
+//        let parameters = [String(self.gameScore)]
+//        var task = myPhoton!.callFunction("score", withArguments: parameters) {
+//            (resultCode : NSNumber?, error : Error?) -> Void in
+//            if (error == nil) {
+//                print("Sent message to Particle to show score: \(self.gameScore)")
+//            }
+//            else {
+//                print("Error when telling Particle to show score")
+//            }
         }
         
         
@@ -173,5 +208,5 @@ class ViewController: UIViewController {
         
     }
     
-}
+
 
