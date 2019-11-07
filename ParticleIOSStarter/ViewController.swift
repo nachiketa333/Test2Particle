@@ -11,14 +11,14 @@ import Particle_SDK
 class ViewController: UIViewController {
 
     // MARK: User variables
-    let USERNAME = "jenelleteaches@gmail.com"
-    let PASSWORD = "nonsense1234"
+    let USERNAME = "nachiketa0333@gmail.com"
+    let PASSWORD = "nachiketa03"
     
     // MARK: Device
     // Jenelle's device
     //let DEVICE_ID = "36001b001047363333343437"
     // Antonio's device
-    let DEVICE_ID = "390031000f47363333343437"
+    let DEVICE_ID = "230044001247363333343437"
     var myPhoton : ParticleDevice?
 
     // MARK: Other variables
