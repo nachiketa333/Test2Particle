@@ -1,0 +1,117 @@
+#include <InternetButton.h>
+
+InternetButton button = InternetButton();
+void setup() {
+  button.begin();
+
+  // Exposed functions-test
+
+  Particle.function("answer", showCorrectOrIncorrect);
+
+  // Show a visual indication to the player that the Particle
+  // is loaded & ready to accept inputs
+  for (int i = 0; i < 3; i++) {
+    button.allLedsOn(20,0,0);
+    delay(250);
+    button.allLedsOff();
+    delay(250);
+  }
+}
+
+int showCorrectOrIncorrect(String cmd) {
+if (cmd == "smileSlow") {
+     button.ledOn(1,5,212,164);
+    button.ledOn(11,5,212,164);
+    delay(1000);
+    button.ledOn(3,34,139,34);
+    button.ledOn(4,34,139,34);
+    button.ledOn(5,34,139,34);
+    button.ledOn(6,34,139,34);
+    button.ledOn(7,34,139,34);
+    button.ledOn(8,34,139,34);
+    button.ledOn(9,34,139,34);
+    button.ledOff(2);
+    button.ledOff(10); 
+    delay(3800);
+    button.ledOff(3);
+    delay(3800);
+    button.ledOff(9);
+    delay(3800);
+    button.ledOff(4);
+    delay(3800);
+     button.ledOff(8);
+     delay(3800);
+     button.ledOff(5);
+     delay(4000);
+    button.ledOn(1,247,0,0);
+    button.ledOn(11,247,0,0);
+    delay(4000);
+    button.ledOn(6,247,0,0);
+    button.ledOn(7,247,0,0);
+  }
+  else if (cmd == "smile") {
+    button.ledOn(1,5,212,164);
+    button.ledOn(11,5,212,164);
+    delay(1000);
+    button.ledOn(3,34,139,34);
+    button.ledOn(4,34,139,34);
+    button.ledOn(5,34,139,34);
+    button.ledOn(6,34,139,34);
+    button.ledOn(7,34,139,34);
+    button.ledOn(8,34,139,34);
+    button.ledOn(9,34,139,34);
+    button.ledOff(2);
+    button.ledOff(10); 
+    delay(2500);
+    button.ledOff(3);
+    delay(2500);
+    button.ledOff(9);
+    delay(2500);
+    button.ledOff(4);
+    delay(2500);
+     button.ledOff(8);
+     delay(2500);
+     button.ledOff(5);
+     delay(2500);
+    button.ledOn(1,247,0,0);
+    button.ledOn(11,247,0,0);
+    delay(2200);
+    button.ledOn(6,247,0,0);
+    button.ledOn(7,247,0,0);
+  }
+    
+  else {
+    // you received an invalid color, so
+    // return error code = -1
+    return -1;
+  }
+  // function succesfully finished
+  return 1;
+}
+
+int DELAY = 200;
+
+void loop() {
+
+  // EVENT 1:
+  // when person presses button 4 & 2 send player choice to phone
+  if (button.buttonOn(4)) {
+    // CHOICE = A
+    Particle.publish("playerChoice","A", 60, PRIVATE);
+    delay(DELAY);
+  }
+  if (button.buttonOn(2)) {
+    // CHOICE = B
+    Particle.publish("playerChoice","B", 60, PRIVATE);
+    delay(DELAY);
+  }
+
+  // EVENT 2:
+  // when person presses button 3, change the question on the phone
+  if (button.buttonOn(3)) {
+    // CHANGE QUESTION
+    Particle.publish("playerChoice","C", 60, PRIVATE);
+    delay(DELAY);
+  }
+}
+
