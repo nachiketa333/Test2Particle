@@ -96,7 +96,7 @@ class ViewController: UIViewController {
                 print("got event with data \(event?.data)")
                 let choice = (event?.data)!
                 if (choice == "A") {
-                    self.turnParticleGreen()
+                    self.smileAnimation()
                     self.gameScore = self.gameScore + 1;
                 }
                 else if (choice == "B") {
@@ -108,11 +108,11 @@ class ViewController: UIViewController {
     
     
     
-    func turnParticleGreen() {
+    func smileAnimation() {
         
         print("Pressed the change lights button")
         
-        let parameters = ["green"]
+        let parameters = ["smile"]
         var task = myPhoton!.callFunction("answer", withArguments: parameters) {
             (resultCode : NSNumber?, error : Error?) -> Void in
             if (error == nil) {
