@@ -126,6 +126,24 @@ class ViewController: UIViewController {
         
     }
     
+    func smileSlow() {
+        
+        print("Pressed the change lights button")
+        
+        let parameters = ["smileSlow"]
+        var task = myPhoton!.callFunction("answer", withArguments: parameters) {
+            (resultCode : NSNumber?, error : Error?) -> Void in
+            if (error == nil) {
+                print("Sent message to Particle for Smile Animation")
+            }
+            else {
+                print("Error when telling Particle to Smile")
+            }
+        }
+        //var bytesToReceive : Int64 = task.countOfBytesExpectedToReceive
+        
+    }
+    
     func turnParticleRed() {
         
         print("Pressed the change lights button")
@@ -175,9 +193,17 @@ class ViewController: UIViewController {
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
+    @IBAction func powerUpButtonPressed(_ sender: Any) {
+        
+        totalTime = 30;
+         startTimer();
+        smileSlow();
+        
+    }
     
     @IBAction func testScoreButtonPressed(_ sender: Any) {
         
+        totalTime = 25;
         startTimer();
         self.smileAnimation();
         
