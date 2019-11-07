@@ -146,7 +146,7 @@ class ViewController: UIViewController {
     
     
     var countdownTimer: Timer!
-    var totalTime = 25
+    var totalTime = 20
     
     
     func startTimer() {
@@ -181,24 +181,6 @@ class ViewController: UIViewController {
         startTimer();
         self.smileAnimation();
         
-//
-//        print("score button pressed")
-//
-//        // 1. Show the score in the Phone
-//        // ------------------------------
-//        self.scoreLabel.text = "Score:\(self.gameScore)"
-//
-//        // 2. Send score to Particle
-//        // ------------------------------
-//        let parameters = [String(self.gameScore)]
-//        var task = myPhoton!.callFunction("score", withArguments: parameters) {
-//            (resultCode : NSNumber?, error : Error?) -> Void in
-//            if (error == nil) {
-//                print("Sent message to Particle to show score: \(self.gameScore)")
-//            }
-//            else {
-//                print("Error when telling Particle to show score")
-//            }
         }
         
         
